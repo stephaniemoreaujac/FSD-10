@@ -42,6 +42,7 @@ c. Calculate the area of a circle with the result of (b) as the radius.
 d. Calculate what percentage that the original number is the area (c)
 
 ```text
+allTheStuff(7);
 > Half of 7 is 3.5.
 > The result of squaring the number 3.5 is 12.25.
 > The result of squaring the number 12.25 is 150.0625.
