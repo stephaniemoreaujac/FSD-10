@@ -1,4 +1,3 @@
-<?php error_reporting(E_ALL); // show all the errors ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +46,7 @@
 	$arrC = array("Steve", "USA", "Florida");
 	$arrD = array("Jack", "Norway", "Oslo");
 	
-/*
+
 	echo "<br>";
 	echo $arrC; // display word "Array" on screen
 	echo "<br>";
@@ -57,10 +56,8 @@
 	echo "</pre>";
 
 	print_r($myString);
-*/
 
 	// manipulate array 
-
 	$arrD[0] = "Arthur";	// change value
 	$arrD[4] = "76"; // add new value (if it does not exist) - WHAT ABOUT 3!!!
 	$arrD[] = "Married"; // indexed array should add value with empty []
@@ -94,6 +91,54 @@
 	print_r($arrStudents);
 	echo "</pre>";
 
+	echo $arrStudents["Steph"]["Math"];
+
+	$arrSteph = $arrStudents["Steph"];
+	$arrMath = $arrSteph["Math"];
+	
+	echo "<pre>";
+	print_r($arrSteph);
+	echo "</pre>";
+
+
+// Arithmetic Operators
+
+$price = 10.55;
+$items = 3;
+
+$subtotal = $price * $items;
+$tax = ($subtotal / 100) * 14;
+$total = $subtotal + $tax;
+// $total = ( $price * $items ) + ( ( ( $price * $items ) / 100 ) * 14 );
+// $total = $subtotal + ( ( $subtotal / 100) * 14);
+
+echo $total .'<br>';
+
+echo 8 % 3 .'<br>'; // modulos
+echo ++$total .'<br>';
+echo $total++ .'<br>';
+
+$myString = "Steph" . " " .  "Moreau"; // concatenate
+$myString .= ", Teacher";	// append
+
+$myString = "Your total amount is $total";
+
+echo $myString;
+
+// 1= and <> both mean not equal to
+
+if (1 == 1 || 2 == 2){
+	echo "<br>";
+	echo "this is true";
+} else if (1 == 2) {
+	echo "<br>";
+	echo "this is not true!!";
+} else {
+	echo "somethign went wrong";
+}
+
+// all information about your php installation
+echo phpinfo();
 
 /* closing php tag */ ?>
 </body>

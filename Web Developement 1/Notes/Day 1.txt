@@ -1,0 +1,49 @@
+DOWNLOAD MAMP
+https://www.mamp.info/en/downloads/
+ - download the correct version for your operating system
+ - uncheck MAMP pro 
+ -  remember the location of your server files
+
+
+
+INDEXED ARRAYS (arrIndex)
+[0] Alain
+[1] Arthur
+[2] Caroline
+[3] Bob
+
+arrIndex[2] ==> Caroline
+
+
+ASSOCIATIVE ARRAYS (arrAssociative)
+[name] Stephanie
+[country] Canada
+[province] Quebec
+
+arrAssociative[country] ==> Canada
+
+
+Stephanie
+	FALL23
+		[Math] 70
+		[Web] 99
+		[Desing] 40
+	SUMMER23
+		[English] 80
+		[French] 80
+		[Spanish] 80
+Bob
+	[Geo] 95
+	[Math] 77
+Arthur
+	[French] 60
+	[English] 60
+
+
+arrStudent["Stephanie"]["FALL23"]["Web"] ==> contains value 99
+	
+
+SHOW ALL ERRORS ON SCREEN
+- Chance value in php.ini to display_errors = On
+Careful when manipulating the php.ini (or any configuration file) because it can lead to a lot of issues if done incorrectly
+
