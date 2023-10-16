@@ -1,0 +1,41 @@
+// ternary
+
+$name = "Steph";
+echo ($name=="") ? "Everybody" : $name;
+
+if ($name == ""){
+	echo "Everybody";
+} else {
+	echo $name;
+}
+
+$greeting = ($name == "" ) ?  // conditional
+	"Hello Everybody" : // result if true
+	"Hello {$name}"; // resutl if false
+
+
+
+
+
+-- FOODS SELECT AS ARRAY
+
+If I don't define food as an array
+
+food = carrots
+food = cucumber
+food = apple
+
+*Value of food is apple	  
+
+
+food[] = carrots
+food[] = cucumber
+food[] = apple
+
+*value of food is [carrots, cucumber, apple]
+
+
+https://www.php.net/manual/en/filter.filters.sanitize.php
+https://www.php.net/manual/en/filter.filters.validate.php
+
+
