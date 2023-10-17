@@ -48,8 +48,22 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST"){
     }
   }
 
-}
 
+}
+// initialize variables;
+// set default value to "" if POST key not found
+$firstName = $_POST['first_name'] ?? "";
+
+$lastName = $_POST['last_name'] ?? ""; // method 1
+
+// method 2
+if (isset($_POST['last_name']))
+  $lastName = $_POST['last_name'];
+else 
+  $lastName = "";
+
+// method 3
+$lastName = isset($_POST['last_name']) ? $_POST['last_name'] : "" ;
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -60,11 +74,11 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST"){
 	<h1>My Forms</h1>
 
   <form action="" method="POST">
-    First Name : <input type="text" name="first_name" /><br />
-    Last Name :  <input type="text" name="last_name" / /><br />
-    Email : <input type="email" name="email" / /><br />
+    First Name : <input type="text" name="first_name" value="<?=$firstName; ?>" /><br />
+    Last Name :  <input type="text" name="last_name" value="<?=$lastName;?>"  /><br />
+    Email : <input type="text" name="email" /><br />
     Address : <textarea name="address"></textarea><br />
-    Happy with the service? <input type="checkbox" name="happy" /><br />
+    Happy with the service? <input type="checkbox" name="happy" value="yes i am" /><br />
     Favorite Foods :
     <select name="foods[]" multiple >
       <option value="carrot">Carrots</option>
@@ -76,7 +90,9 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST"){
     <!-- checkbox with [] -->
     <!-- My Photo: <input type="file" name="photo" /> -->
     <br />
-    <input type="submit" />
+    <input type="hidden" name="primaryKey" value="password123!" />
+    <input type="submit" name="btnSubmitted" />
+    <input type="submit" name="btnOther" />
   </form>
 </body>
 </html>

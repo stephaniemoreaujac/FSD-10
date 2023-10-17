@@ -1,0 +1,19 @@
+FORM UPLOAD
+Requires POST method and specific enctype in form attribute
+Uses $_FILES super global
+Move file from temporary location to your web server
+
+--- Database
+
+MYSQL GUI
+http://localhost/phpMyAdmin/
+
+Specialized folder from our web server that allows us to connect to our database and interact with it using a graphical user interface
+
+Create database
+Create tables
+Create user and grant privilege to our database
+
+MYSQL connection 
+mysqli and PDO
+
