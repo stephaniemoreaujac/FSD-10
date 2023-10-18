@@ -7,6 +7,7 @@ $sql = "SELECT * FROM portfolio";
 $query = $db->query($sql);
 
 // show items below
+$currentNav = "recent";
 include "includes/header.php";
 ?>
 
@@ -20,12 +21,12 @@ include "includes/header.php";
 		<?php if ($row['image'] != ""){ ?>
 			<!-- check if image exists (else dummy photo ?) -->
 			<a href="<?=$link; ?>">
-				<img class="img-responsive" src="http://picsum.photos/700/400?1" alt>
+				<img class="img-responsive" src="<?=$row['image'];?>" alt>
 			</a>
 		<?php } //end if ?>
 		<h3>
 			<a href="<?=$link; ?>"><?=$row['title']; ?></a>
-			<span class="small"> <?=$row['update_time']; ?></span>
+			<span class="small"> <?=date('F j, Y', strtotime($row['update_time'])); ?></span>
 		</h3>
 		<p><?=$row['caption']; ?></p>
 	</div>

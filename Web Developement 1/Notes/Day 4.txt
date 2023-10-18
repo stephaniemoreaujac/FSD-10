@@ -1,0 +1,9 @@
+UPDATE DATABASE
+Edit column 'update_time' on table 'portfolio' set type to DATE
+
+Function to use is strtotime($row['update_time']) - it will convert a string to a timestamp (if possible)
+
+--- IMPORT INTO DATABASE
+--- (EXPORT FROM DATABASE)
+
+CRUD

@@ -1,4 +1,6 @@
 <?php
+// require the functions files
+require "includes/functions.php";
 
 // variable
 $dbType = "mysql"; // type of database to connect to
