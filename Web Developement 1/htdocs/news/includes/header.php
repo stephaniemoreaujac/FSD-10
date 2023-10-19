@@ -36,15 +36,13 @@
 					<li class="<?php if ($currentNav == "recent") echo "active"; ?>">
 						<a href="index.php">Recent Work</a>
 					</li>
-					<li>
-						<a href="#">Java</a>
-					</li>
-					<li>
-						<a href="#">HTML</a>
-					</li>
-					<li>
-						<a href="#">PHP</a>
-					</li>
+					<?php foreach($allCategories as $category){ ?>
+						<li class="<?php if ($currentNav == "C".$category['category_id']) echo "active"; ?>">
+							<a href="listing.php?item=<?=$category['category_id'];?>">
+								<?=$category['name']; ?>
+							</a>
+						</li>
+					<?php } ?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="<?php if ($currentNav == "add") echo "active"; ?>">

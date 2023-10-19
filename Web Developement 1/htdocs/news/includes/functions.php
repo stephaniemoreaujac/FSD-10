@@ -1,11 +1,13 @@
 <?php 
-
+// variables
 $currentNav = "";
+
 
 /**
  * Ouptput the page not found
  */
 function pageNotFound(){
+	global $allCategories; // gives access to $allCategories to prevent variable not found error
 	include "header.php";
 	echo "Page not found";
 	include "footer.php";
