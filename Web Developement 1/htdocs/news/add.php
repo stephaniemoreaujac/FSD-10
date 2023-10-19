@@ -46,7 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
 	if (validateIsEmptyData($_POST, 'selCategory')) $errorMessages .= "Cateogry is required <br>";
 	else $selCategory = $_POST['selCategory'];
-	
+
+	$fileImage = $_POST['oldImage'] ?? ""; // tracking existing image during update
+	$itemId = $_POST['itemId'] ?? ""; // track item id if it exists
+
 	// if error message is empty then save to db
 	if ($errorMessages == ""){
 		// save and upload the file (if applicable)
@@ -58,6 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
 			if (move_uploaded_file($sourceFile, $destinationFile)){
 				// file has been moved
+				// removed any old files
+				if ($fileImage  != "" && $fileImage != $destinationFile){
+					// file it not an empty string = a file exists
+					// AND it's not the same file as the new one just uplpoaded
+					unlink($fileImage); //DELETE FROM THE SERVER
+				}
 				$fileImage = $destinationFile;
 			} else {
 				// file has NOT been moved
@@ -66,8 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 		} // end $FILE error
 
 		// add to my database
-		$sql = "INSERT INTO portfolio (title, caption, body, image, update_time, category_id) VALUES (:title, :caption, :body, :image, :utime, :cat_id);";
-		$query = $db->prepare($sql);
 		$data = [
 			"title" => $txtTitle, 
 			"caption" => $txtCaption,
@@ -76,9 +83,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 			"cat_id" => $selCategory,
 			"utime" => date("Y-m-d")
 		];
+
+		if ($itemId == ""){
+			// no item id was found = add new row to the database
+			$sql = "INSERT INTO portfolio (title, caption, body, image, update_time, category_id) VALUES (:title, :caption, :body, :image, :utime, :cat_id);";
+		}else{
+			// item id was found = update existing row
+			$sql = "UPDATE portfolio SET title = :title, caption = :caption, body = :body, category_id = :cat_id, image = :image, update_time = :utime WHERE portfolio_id = :pid";
+
+			$data['pid'] = $itemId;
+			// add id to $data;
+		}
+		$query = $db->prepare($sql);			
 		$query->execute($data);
 
-		$itemId = $db->lastInsertId();
+		// if itemid does not exist (INSERT was performed) get the last inserted id from the DB
+		if($itemId=="") $itemId = $db->lastInsertId();
 		
 		// redirect user to the portfolio singel item page
 		header("location: single.php?item={$itemId}");
@@ -93,14 +113,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 }
 
 
-$pageTitle = "Add New Item";
+$pageTitle = ($itemId=="") ? "Add New Item" : "Update Item";
 $currentNav = "add";
 include "includes/header.php"; ?>
 
 <!-- line 71-106 of template_form.html -->
 <div class="row">
 	<form class="col-sm-6 col-sm-offset-3" method="POST" enctype="multipart/form-data" action="add.php">
-		<input type="hidden" name="itemId" value=<?=$itemId; ?>
+		<input type="hidden" name="itemId" value=<?=$itemId; ?> >
+		<input type="hidden" name="oldImage" value="<?= $fileImage; ?>" ?>
 	<p><?=$errorMessages ?></p>
 		<div class="form-group">
 			<label for="txtTitle" class="control-label">Title</label>
@@ -122,10 +143,10 @@ include "includes/header.php"; ?>
 			<label for="selCategory" class="control-label">Category</label>
 			<select id="selCategory" name="selCategory" required="required" class="select form-control">
 				<option value="">-----</option>
-				<?php foreach($allCategories as $cat){ 
-					$selected = ($cat['category_id'] == $selCategory) ? "selected" : "";
+				<?php foreach($allCategories as $cat_id => $cat_name){ 
+					$selected = ($cat_id == $selCategory) ? "selected" : "";
 					?>
-					<option value="<?=$cat['category_id']; ?>" <?=$selected; ?>><?=$cat['name']; ?></option>
+					<option value="<?=$cat_id; ?>" <?=$selected; ?>><?=$cat_name; ?></option>
 				<?php } ?>
 			</select>
 		</div>

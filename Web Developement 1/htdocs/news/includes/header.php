@@ -36,10 +36,10 @@
 					<li class="<?php if ($currentNav == "recent") echo "active"; ?>">
 						<a href="index.php">Recent Work</a>
 					</li>
-					<?php foreach($allCategories as $category){ ?>
-						<li class="<?php if ($currentNav == "C".$category['category_id']) echo "active"; ?>">
-							<a href="listing.php?item=<?=$category['category_id'];?>">
-								<?=$category['name']; ?>
+					<?php foreach($allCategories as $cat_id => $cat_name){ ?>
+						<li class="<?php if ($currentNav == "C".$cat_id) echo "active"; ?>">
+							<a href="index.php?item=<?=$cat_id;?>">
+								<?=$cat_name; ?>
 							</a>
 						</li>
 					<?php } ?>

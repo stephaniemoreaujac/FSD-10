@@ -20,7 +20,8 @@ $db = new PDO($dbDSN, $dbUsername, $dbPassword);
 // $allCategories contains all the categories from the DB
 $sql = "SELECT category_id, name FROM categories ORDER BY name ASC";
 $query = $db->query($sql);
-$allCategories = $query->fetchAll();
+$allCategories = $query->fetchAll(PDO::FETCH_KEY_PAIR);
+// PDO::FETCH_KEY_PAIR changes the way the results are returned
 
 /*
 // write my sql statement
