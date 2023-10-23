@@ -1,0 +1,15 @@
+# THIS IS A COMMENT
+# any error in this document = 500 SERVER error
+
+# Replace the default file to show when browsing a directory
+# DirectoryIndex login.php
+
+# Hide the directory listing when default file not found
+# Options -Indexes
+
+# URL rewrites
+RewriteEngine On
+
+# RewriteRule (REGEX NEW URL) (REGEX WHAT IT ACTUALLY IS)
+RewriteRule ^category/([0-9]+)$ index.php?item=$1 [L]
+RewriteRule ^login$ login.php [L]

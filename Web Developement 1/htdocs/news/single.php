@@ -34,8 +34,10 @@ include "includes/header.php";
 			<div class="col-sm 4">
 				<h1><?= $result['title']; ?></h1>
 				<span class="small"><?= date('F j, Y', strtotime($result['update_time'])); ?></span><br>
-				<a href="add.php?item=<?=$result['portfolio_id']; ?>">Edit</a> - 
-				<a href="delete.php?item=<?=$result['portfolio_id']; ?>">Delete</a>
+				<?php if ($userIsLoggedIn){ ?>
+					<a href="add.php?item=<?=$result['portfolio_id']; ?>">Edit</a> - 
+					<a href="delete.php?item=<?=$result['portfolio_id']; ?>">Delete</a>
+				<?php } ?>
 				<p><strong><?=$allCategories[$result['category_id']]; ?></strong></p>
 				<p><?=nl2br($result['body']); ?></p>
 			</div>

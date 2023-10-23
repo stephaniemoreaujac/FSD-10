@@ -5,7 +5,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<base href="http://localhost:81/news/" > 
+	<!-- sets the base url for all linked assets -->
+	
 	<title>Portfolio</title>
 	<!-- old bootstrap because old template -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -36,18 +38,29 @@
 					<li class="<?php if ($currentNav == "recent") echo "active"; ?>">
 						<a href="index.php">Recent Work</a>
 					</li>
+					<!-- start of categories -->
 					<?php foreach($allCategories as $cat_id => $cat_name){ ?>
 						<li class="<?php if ($currentNav == "C".$cat_id) echo "active"; ?>">
-							<a href="index.php?item=<?=$cat_id;?>">
+							<!-- <a href="index.php?item=<?=$cat_id;?>"> -->
+							<a href="category/<?=$cat_id; ?>">
 								<?=$cat_name; ?>
 							</a>
 						</li>
 					<?php } ?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="<?php if ($currentNav == "add") echo "active"; ?>">
-						<a href="add.php">Add Item</a>
-					</li>
+					<?php if ($userIsLoggedIn){ ?>
+						<li class="<?php if ($currentNav == "add") echo "active"; ?>">
+							<a href="add.php">Add Item</a>
+						</li>
+						<li>
+							<a href="logout.php">Logout</a>
+						</li>
+					<?php } else { ?>
+						<li class="<?php if ($currentNav == "login") echo "active"; ?>">
+							<a href="login.php">Login</a>
+						</li>
+					<?php } ?>
 				</ul>
 			</div>
 

@@ -1,0 +1,14 @@
+Users table passwords
+abc = abc
+xyz = 123 
+
+.htaccess is a configuration file that overwrites the setting of the apache config file (http.conf) and the php config file (php.ini).
+Any error/syntax/typos will most likely result in a 500 SERVER ERROR
+ 
+.htaccess to create SEO friendly URLs
+index.php?item=3
+category/3
+
+/category/3/HTML
+$1 = 3
+$2 = HTML

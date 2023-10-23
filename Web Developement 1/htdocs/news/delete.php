@@ -1,7 +1,9 @@
 <?php
 
 include "dbConnect.php";
-// todo: additional confirmation to perform delete action
+
+// user must be logged in
+loginRequired($userIsLoggedIn);
 
 // is there a value in my Get for item
 if (!isset($_GET['item'])){

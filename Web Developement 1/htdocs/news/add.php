@@ -2,6 +2,9 @@
 
 require "dbConnect.php";
 
+// is the user logged in? only logged in users allowed
+loginRequired($userIsLoggedIn);
+
 $errorMessages = "";
 $itemId = "";
 $txtTitle = "";

@@ -7,7 +7,8 @@ $currentNav = "";
  * Ouptput the page not found
  */
 function pageNotFound(){
-	global $allCategories; // gives access to $allCategories to prevent variable not found error
+	global $allCategories, $userIsLoggedIn; 
+	// gives access to $allCategories to prevent variable not found error
 	include "header.php";
 	echo "Page not found";
 	include "footer.php";
@@ -30,5 +31,20 @@ function validateIsEmptyData($array, $key){
 	return false;
 
 }
+
+/**
+ * Redirect if the user is not logged in
+ *
+ * @param [boolean] $loginFlag
+ */
+function loginRequired($loginFlag){
+	// default value false if $loginFlag not found
+	$loginFlag = $loginFlag ?? false;
+	if ($loginFlag == false){
+		header("location: login.php");
+		die();
+	}
+}
+
 
 ?>
