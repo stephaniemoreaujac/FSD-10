@@ -1,0 +1,18 @@
+(Do not include the > when executing the commands)
+WINDOWS / MAC
+Use file explorer to navigate htdocs.
+Right-click htdocs folder and find option to 
+"Open in Terminal" or "Open in Command Prompt/Power Shell" 
+
+Listing the content of your directory
+WINDOW	> dir
+MAC		> ls
+
+Change Directory
+> cd NAME_OF_DIRECTORY
+
+To reinstall the vendor file
+Navigate to the folder that contains your composer.json file
+In command prompt/terminal 
+> composer update
+

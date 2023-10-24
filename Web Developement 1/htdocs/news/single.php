@@ -18,6 +18,9 @@ if (!$result){ // nothing found in the database
 	pageNotFound();
 }
 
+$log_portfolio->notice("Single views", ["id"=>$_GET['item']]);
+
+
 $pageTitle = $result['title'];
 
 include "includes/header.php";

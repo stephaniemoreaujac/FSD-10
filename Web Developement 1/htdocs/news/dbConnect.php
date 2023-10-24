@@ -1,5 +1,16 @@
 <?php
 
+require "vendor/autoload.php";
+
+//setup my monolog
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+$log_portfolio = new Logger("PORTFOLIO");
+$log_portfolio->pushHandler( new StreamHandler('logs/portfolio.log') );
+$log_users = new Logger("USERS");
+$log_users->pushHandler( new StreamHandler('logs/users.log') );
+
 session_start(); // allows the use of $_SESSION
 
 // set flag to know if user if logged in

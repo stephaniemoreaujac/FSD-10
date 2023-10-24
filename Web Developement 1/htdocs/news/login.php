@@ -32,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 			if (password_verify($_POST['txtPass'], $data['password'])){
 				// The username and password match
 
+				// log file entry
+				$log_users->notice("User logged in", ["id"=>$data['user_id']]);
 				// keep the user logged using session variables - make sure the session is started
 				$_SESSION['loggedIn'] = true;
 				$_SESSION['realName'] = $data['real_name'];
