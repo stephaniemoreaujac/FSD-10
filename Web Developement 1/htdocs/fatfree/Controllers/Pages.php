@@ -6,18 +6,26 @@
 class Pages{
 
 	function homepage($f3){
-		$aboutPageURL = $f3->alias("aboutPage");
+		/*
+			$aboutPageURL = $f3->alias("aboutPage");
 
-		echo "This is the homepage
-		<br>
-		<a href='aboutUs'>My about page</a>
-		<br>
-		<a href='{$aboutPageURL}'>My about page</a>
-		";
+			echo "This is the homepage
+			<br>
+			<a href='aboutUs'>My about page</a>
+			<br>
+			<a href='{$aboutPageURL}'>My about page</a>
+			";*/
+
+		// create template instance to show visual to users
+		$f3->set("pageTitle", "My Home Page");
+		echo Template::instance()->render('home.html');
+
 	}
 
-	function about(){
-		echo "About Me.. Hello";
+	function about($f3){
+		// echo "About Me.. Hello";
+		$f3->set("pageTitle", "All About Me");
+		echo Template::instance()->render('about.html');
 	}
 
 	function aboutPost(){

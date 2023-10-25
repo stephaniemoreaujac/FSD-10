@@ -10,6 +10,9 @@ $f3 = Base::instance();
 // framework to automatically load the classees within these folders
 $f3->set('AUTOLOAD', 'Controllers/');
 
+// framework to automatically load templates(view) from here
+$f3->set('UI', 'Views/');
+
 /* - used without controller folder
 	// setup simple route
 	$f3->route('GET /', function($f3){ 
@@ -37,7 +40,7 @@ $f3->set('AUTOLOAD', 'Controllers/');
 	});
 */
 // routes using /Controller classes
-$f3->route('GET /', 'Pages->homepage');
+$f3->route('GET @home: /', 'Pages->homepage');
 $f3->route('GET @aboutPage: /aboutSomebody', 'Pages->about');
 $f3->route('POST /about', 'Pages->aboutPost');
 

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{{ @pageTitle }}</title>
+	</head>
+	<body>
+		<!-- only because we are in a subfolder do we add {{ @BASE }}-->
+		<a href="{{ @BASE }}{{ 'home' | alias }}">Home</a> | 
+		<a href="{{ @BASE }}{{ 'aboutPage' | alias }}">About</a> 
