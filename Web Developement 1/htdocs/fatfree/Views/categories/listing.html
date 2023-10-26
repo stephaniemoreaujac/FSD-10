@@ -1,12 +1,16 @@
+<include href="header.html">
 <h1>Categories</h1>
 
-<p>
-	Category Name
-	<a href="#">Update</a>
-	 | 
-	 <a href="#">Delete</a>
+<!-- foreach ($categories as $c ) -->
+<repeat group="{{ @categories }}" value="{{ @c }}">
+	<p>
+		{{ @c['name'] }}
+		<a href="{{ @BASE }}{{ 'catUpdate', 'cat='.@c['category_id'] | alias}}">Update</a>
+		| 
+		<a href="{{ @BASE }}{{ 'catDelete', 'cat='.@c['category_id'] | alias }}">Delete</a>
+	</p>
+</repeat>
 
-</p>
+<a href="{{ @BASE }}{{ 'catCreate' | alias }}">Create a Category</a>
 
-
-<a href="#">Create a Category</a>
+<include href="footer.html">

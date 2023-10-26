@@ -3,7 +3,7 @@
 /**
  * Handle pages without database connections
  */
-class Pages{
+class PageController{
 
 	function homepage($f3){
 		/*
@@ -18,6 +18,7 @@ class Pages{
 
 		// create template instance to show visual to users
 		$f3->set("pageTitle", "My Home Page");
+
 		echo Template::instance()->render('home.html');
 
 	}

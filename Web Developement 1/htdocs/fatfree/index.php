@@ -8,10 +8,11 @@ require "vendor/autoload.php";
 $f3 = Base::instance();
 
 // framework to automatically load the classees within these folders
-$f3->set('AUTOLOAD', 'Controllers/');
+$f3->set('AUTOLOAD', 'Controllers/|Models/');
 
 // framework to automatically load templates(view) from here
 $f3->set('UI', 'Views/');
+
 
 /* - used without controller folder
 	// setup simple route
@@ -33,19 +34,24 @@ $f3->set('UI', 'Views/');
 		echo "parameter " . $p['singleid'] . '<br>';
 	});
 
-	$f3->route('GET /single/@singleid/@category', function($f3, $p){
-		echo "Single ". $f3->get('PARAMS.singleid') .'<br>';
-		echo "parameter " . $p['singleid'] . '<br>';
-		echo $p['category'];
 	});
 */
 // routes using /Controller classes
-$f3->route('GET @home: /', 'Pages->homepage');
-$f3->route('GET @aboutPage: /aboutSomebody', 'Pages->about');
-$f3->route('POST /about', 'Pages->aboutPost');
+$f3->route('GET @home: /', 'PageController->homepage');
+$f3->route('GET @aboutPage: /aboutSomebody', 'PageController->about');
+$f3->route('POST /about', 'PageController->aboutPost');
 
-$f3->route('GET /users/@uid', 'Pages->userData'); // not a great example
+// categories CRUD
+$f3->route('GET @catRead: /listing', 'CategoryController->listing');
 
+$f3->route('GET @catUpdate: /update/@cat', 'CategoryController->update');
+$f3->route('POST @catUpdate: /update/@cat', 'CategoryController->updateSave');
+
+$f3->route('GET @catCreate: /add', 'CategoryController->add');
+$f3->route('POST @catCreate: /add', 'CategoryController->addSave');
+
+$f3->route('GET @catDelete: /delete/@cat', 'CategoryController->delete'); 
+// we should implement a deletion validation and POST to actually delete
 
 // start the framework
 $f3->run();
